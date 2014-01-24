@@ -1,11 +1,9 @@
-//var gcode = require("./node_modules/gcodejs/parser.js")
 var fs = require("fs")
-var parseGCode = require("../index.js")
+var prepGCode = require("../index.js")
 
-console.log("let's parse some gcode")
 
-var data = fs.readFileSync("text.gcode")
+var data = fs.readFileSync("test/text.gcode")
 var fileContent = data.toString()
-var gcode = parseGCode(fileContent)
+var gcode = prepGCode(fileContent)
 
 console.log(gcode)
