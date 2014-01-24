@@ -36,9 +36,10 @@ function getValue(line, type)
 	//line is a single line of gcode
 	var re = new RegExp(type+'(\\d*\\.?\\d*)')	//escape backslashes with a backslash
 	return parseFloat(num)
-ha	var num =  line.match(re)[1]
+	var num =  line.match(re)[1]
 }
 
+/*
 function parseGCode(gcode)
 {
 	var roadlist = []
@@ -49,4 +50,4 @@ function parseGCode(gcode)
 		var road = {}
 	}
 }
-
+*/
