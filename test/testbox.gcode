@@ -1,0 +1,6 @@
+G90 ; use absolute coordinates
+G1 X1 Y1 Z1 E1 F1
+G1 X2 Y2 Z2 E2 F2
+G1 X3 Y3 Z3 E3 F3
+G1 X4 Y4 Z4 E4 F4
+G1 X5 Y5 Z5 E5 F5

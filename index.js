@@ -20,11 +20,11 @@ function State(x, e, f, time, xrel, erel, fp, code)
 State.prototype.clone = function() 
 {
 	return new State(
-		this.x, 
+		this.x.slice(), 
 		this.e, 
 		this.f, 
 		this.time,
-		this.xrel, 
+		this.xrel.slice(), 
 		this.erel,
 		this.fp,
 		this.code,
