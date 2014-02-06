@@ -1,0 +1,39 @@
+{
+  "name": "interpret-gcode",
+  "version": "0.0.0",
+  "description": "interprets gcode",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    
+  },
+  "devDependencies": {
+  "tape": "~2.4.2"
+  },
+  "scripts": {
+    "test": "tape test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mccarthy527/interpret-gcode.git"
+  },
+  "keywords": [
+    "gcode",
+    "reprap",
+    "3d",
+    "printing",
+    "Maker",
+    "FDM",
+    "extruder",
+    "simulate",
+    "tool",
+    "path"
+  ],
+  "author": "Brian McCarthy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mccarthy527/interpret-gcode/issues"
+  }
+}
