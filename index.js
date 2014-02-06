@@ -4,10 +4,11 @@ module.exports = doParse
 
 var gcodeInterp = require("./gcode-interp.js")
 
-function State(x, e, f, time, xrel, erel, fp, code) {
+function State(x, e, f, time, xrel, erel, fp, code) 
+{
 	this.x = x
 	this.e = e
-	this.f = f
+	this.f = f					//feedrate in mm/minute
 	this.time = time
 	this.xrel = xrel
 	this.erel = erel
@@ -16,7 +17,8 @@ function State(x, e, f, time, xrel, erel, fp, code) {
 	this.implemented = true
 }
 
-State.prototype.clone = function() {
+State.prototype.clone = function() 
+{
 	return new State(
 		this.x, 
 		this.e, 
@@ -29,7 +31,8 @@ State.prototype.clone = function() {
 		this.implemented)
 }
 
-function initialState() {
+function initialState() 
+{
 	return new State([0,0,0], 0, 0, 0, [0,0,0], 0, 0, '')
 }
 
