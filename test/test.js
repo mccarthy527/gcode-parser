@@ -1,6 +1,5 @@
 var fs = require("fs")
 var gc = require("../index.js")
-var dp = require("../doparse.js")
 var test = require('tape')
 var path = require('path')
 
