@@ -6,8 +6,9 @@ Interprets some [gcode commands](http://reprap.org/wiki/G-code) for rep-rap flav
 
 ```javascript
 var gc = require("interpret-gcode")
-
 var fs = require("fs")
+
+
 var data = fs.readFileSync("test.gcode")
 var fileContent = data.toString()
 

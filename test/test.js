@@ -15,7 +15,7 @@ function runTest(t, fileName) {
 
 function testcase(t)
 {
-	/*
+	
 	var history = runTest(t, "simpletest1.gcode")
 	var laststate = history[history.length-1];
 	t.equal(laststate.x[0],98.132)
@@ -27,10 +27,9 @@ function testcase(t)
 	var history = runTest(t, "simpletest2.gcode")
 	var secondtolaststate = history[history.length-2]
 	t.equals(secondtolaststate.fp, -0.5)
-	*/
 	
-	var history = runTest(t, "testbox.gcode")
-	console.log(history)
+	
+
 	t.end()
 }
 test('test1', testcase)

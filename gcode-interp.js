@@ -7,7 +7,6 @@ function G0(prevState, nextState, command, args) {
 		{
 			case 'x':
 				nextState.x[0]=prevState.xrel[0]+parseFloat(args[j].slice(1));
-				console.log(prevState)
 				break;
 			case 'y':
 				nextState.x[1]=prevState.xrel[1]+parseFloat(args[j].slice(1));
