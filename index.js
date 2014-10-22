@@ -4,7 +4,7 @@ module.exports = doParse
 
 var gcodeInterp = require("./gcode-interp.js")
 
-function State(x, e, f, time, xrel, erel, fp, code) 
+function State(x, e, f, time, xrel, erel, fp, code, linenum) 
 {
 	this.x = x
 	this.e = e
@@ -15,6 +15,7 @@ function State(x, e, f, time, xrel, erel, fp, code)
 	this.fp = fp				//filament end position w.r.t nozzle end must be <= 0
 	this.code = code			//line of gcode for this state (sometimes referred to as the next state), useful for debugging
 	this.implemented = true
+	this.linenum = linenum
 }
 
 State.prototype.clone = function() 
@@ -28,15 +29,16 @@ State.prototype.clone = function()
 		this.erel,
 		this.fp,
 		this.code,
-		this.implemented)
+		this.implemented,
+		this.linenum)
 }
 
 function initialState() 
 {
-	return new State([0,0,0], 0, 0, 0, [0,0,0], 0, 0, '')
+	return new State([0,0,0], 0, 0, 0, [0,0,0], 0, 0, '', 0)
 }
 
-function nextState(gcode, prevState) 
+function nextState(gcode, prevState, linenum) 
 {
 	var nextState = prevState.clone()
 	nextState.code = gcode
@@ -52,6 +54,7 @@ function nextState(gcode, prevState)
 	{
 		throw new Error("Unrecognized GCode " + command)
 	}
+	nextState.linenum = linenum
 	return nextState
 }
 
@@ -68,11 +71,14 @@ function removeUnimplemented(history)
 }
 
 
-function executeGCodes(gcodes) {
+function executeGCodes(codesnlinenums) 
+{
+	var gcodes = codesnlinenums[0]
+	var linenums = codesnlinenums[1]
 	var history = [ initialState() ]
 	for(var i=0; i<gcodes.length; ++i) 
 	{
-		history.push(nextState(gcodes[i], history[i]))
+		history.push(nextState(gcodes[i], history[i],linenums[i]))
 	}
 	return history
 }
@@ -89,14 +95,16 @@ function parseGCode(fileContent)
 	//split gcode into lines and extract those that are relevent.  Also remove inline comments.
 	var lines = fileContent.split(/\r\n|\n/)
 	var gcode = []
+	var linenums = []	//an array of line numbers for each gcode command (numbers will be missing if there are comments/empty space
 		
 	for(var i=0;i<lines.length;i++) {
 		var stripped = lines[i].replace(/^N\d+\s+/, "")
 		if(stripped.match(/^(G|M)/)) {
 			gcode.push(removeInLineComment(stripped))
+			linenums.push(i)
 		}
 	}
-	return gcode
+	return [gcode, linenums]
 }
 
 function doParse(content) 

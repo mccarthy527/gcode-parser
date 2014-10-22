@@ -86,8 +86,12 @@ module.exports = {
 	"G90": noop,
 	"M82": noop,
 	"G21": noop,
+	"M48": noop,
+	"M84": noop,
 	"M107": noop,
 	"M104": noop,
-	"M109": noop
+	"M106": noop,
+	"M109": noop,
+	"M190": noop
 	
 }
