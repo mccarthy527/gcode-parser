@@ -74,8 +74,8 @@ function removeUnimplemented(history)
 function executeGCodes(codesnlinenums) 
 {
 	var gcodes = codesnlinenums[0]
-	var linenums = codesnlinenums[1]
 	var history = [ initialState() ]
+	var linenums = codesnlinenums[1]
 	for(var i=0; i<gcodes.length; ++i) 
 	{
 		history.push(nextState(gcodes[i], history[i],linenums[i]))
@@ -84,7 +84,7 @@ function executeGCodes(codesnlinenums)
 }
 
 
-//Parsing
+//Parsingage
 function removeInLineComment(line) {
 	//removes inline comment from a line of gcode
 	return line.replace(/\s*;.*$/, '')
